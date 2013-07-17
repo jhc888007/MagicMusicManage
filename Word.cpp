@@ -1,8 +1,8 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 
 
 
-//\u5927\u5199\u5355\u8BCD\u6240\u6709\u5B57\u6BCD
+//大写单词所有字母
 CString WordCap( CString csWord )
 {
 	CString csResult;
@@ -24,7 +24,7 @@ CString WordCap( CString csWord )
 	return csResult;
 }
 
-//\u5927\u5199\u5355\u8BCD\u7B2C\u4E00\u4E2A\u5B57\u6BCD\uFF0C\u5176\u4F59\u5C0F\u5199
+//大写单词第一个字母，其余小写
 CString WordFirstCapOnly( CString csWord )
 {
 	CString csResult;
@@ -49,7 +49,7 @@ CString WordFirstCapOnly( CString csWord )
 	return csResult;
 }
 
-//\u5927\u5199\u5355\u8BCD\u7B2C\u4E00\u4E2A\u5B57\u6BCD\uFF0C\u5176\u4F59\u4E0D\u6539\u53D8
+//大写单词第一个字母，其余不改变
 CString WordFirstCap( CString csWord )
 {
 	CString csResult;
@@ -67,7 +67,7 @@ CString WordFirstCap( CString csWord )
 	return csResult;
 }
 
-//\u5C0F\u5199\u5355\u8BCD\u6240\u6709\u5B57\u6BCD
+//小写单词所有字母
 CString WordLower( CString csWord )
 {
 	CString csResult;
@@ -89,7 +89,7 @@ CString WordLower( CString csWord )
 	return csResult;
 }
 /*
-//\u5BFB\u627E\u5355\u8BCD\u4E2D\u662F\u5426\u5305\u542B\u67D0\u5185\u5BB9\uFF0C\u53EF\u8BC6\u522B\u4E09\u79CD\u5927\u5C0F\u5199\u683C\u5F0F\uFF1A\u6240\u6709\u5B57\u6BCD\u5927\u5199\uFF0C\u6240\u6709\u5B57\u6BCD\u5C0F\u5199\uFF0C\u5934\u5B57\u6BCD\u5927\u5199
+//寻找单词中是否包含某内容，可识别三种大小写格式：所有字母大写，所有字母小写，头字母大写
 int WordFind1( CString csWord, CString csContent )
 {
 	CString csCap;
@@ -110,7 +110,7 @@ int WordFind1( CString csWord, CString csContent )
 	return 0;
 }
 
-//\u5BFB\u627E\u4E24\u5355\u8BCD\u662F\u5426\u76F8\u540C\uFF0C\u53EF\u8BC6\u522B\u4E09\u79CD\u5927\u5C0F\u5199\u683C\u5F0F\uFF1A\u6240\u6709\u5B57\u6BCD\u5927\u5199\uFF0C\u6240\u6709\u5B57\u6BCD\u5C0F\u5199\uFF0C\u5934\u5B57\u6BCD\u5927\u5199
+//寻找两单词是否相同，可识别三种大小写格式：所有字母大写，所有字母小写，头字母大写
 int WordCompare1( CString csWord1, CString csWord2 )
 {
 	CString csCap;

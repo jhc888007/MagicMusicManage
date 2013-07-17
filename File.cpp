@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "WordCheck.h"
 #include "MusicFileRename.h"
 #include "MusicGroupRename.h"

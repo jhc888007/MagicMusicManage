@@ -1,4 +1,4 @@
-#ifndef __WORD_CHECK_H__
+﻿#ifndef __WORD_CHECK_H__
 #define __WORD_CHECK_H__
 
 

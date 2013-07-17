@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "Word.h"
 #include "WordCheck.h"
 #include "Punctuation.h"
@@ -64,7 +64,7 @@ CString WordCheckMusicSuffix( CString csWord )
 
 int WordCheckSpecial( CString csWord )
 {
-	//\u5982\u679C\u9700\u8981\u5168\u5927\u5199
+	//如果需要全大写
 	if( WordCompare( csWord, _T("cd") ) > 0 
 		|| WordCompare( csWord, _T("cd1") ) > 0 
 		|| WordCompare( csWord, _T("cd2") ) > 0
@@ -104,8 +104,8 @@ int WordCheckYear( TCHAR *ptChar )
 
 int WordCheckType( CString csWord )
 {
-	if( csWord.Compare( _T("\u4E13\u8F91") ) == 0
-		|| csWord.Compare( _T("\u5408\u8F91") ) == 0
+	if( csWord.Compare( _T("专辑") ) == 0
+		|| csWord.Compare( _T("合辑") ) == 0
 		|| csWord.Compare( _T("EP") ) == 0 )
 		return 1;
 	return 0;
@@ -172,19 +172,19 @@ int WordCheckMusic( CString csWord )
 
 int WordCheckSuffix( CString csWord )
 {
-	//\u97F3\u4E50\u6587\u4EF6
+	//音乐文件
 	if( WordCheckMusic( csWord ) > 0 )
 		return 1;
-	//\u7D22\u5F15\u6587\u4EF6
+	//索引文件
 	if( WordCompare( csWord, _T("cue") ) > 0 
 		|| WordCompare( csWord, _T("m3u") ) > 0 
 		|| WordCompare( csWord, _T("m3u8") ) > 0
 		|| WordCompare( csWord, _T("pls") ) > 0 )
 		return 2;
-	//\u6B4C\u8BCD\u6587\u4EF6
+	//歌词文件
 	if( WordCompare( csWord, _T("lrc") ) > 0 )
 		return 3;
-	//\u56FE\u50CF\u6587\u4EF6
+	//图像文件
 	if( WordCompare( csWord, _T("ani") ) > 0 
 		|| WordCompare( csWord, _T("bmp") ) > 0 
 		|| WordCompare( csWord, _T("bw") ) > 0 
@@ -224,7 +224,7 @@ int WordCheckSuffix( CString csWord )
 		|| WordCompare( csWord, _T("wbm") ) > 0 
 		|| WordCompare( csWord, _T("xpm") ) > 0 )
 		return 4;
-	//\u8BB0\u5F55\u6587\u4EF6
+	//记录文件
 	if( WordCompare( csWord, _T("log") ) > 0 
 		|| WordCompare( csWord, _T("txt") ) > 0 
 		|| WordCompare( csWord, _T("nfo") ) > 0 
@@ -233,10 +233,10 @@ int WordCheckSuffix( CString csWord )
 		|| WordCompare( csWord, _T("md5") ) > 0 
 		|| WordCompare( csWord, _T("sfv") ) > 0 )
 		return 5;
-	//\u65E0\u7528\u6587\u4EF6
+	//无用文件
 	if( WordCompare( csWord, _T("db") ) > 0 )
 		return 6;
-	//\u5176\u4ED6\u6587\u4EF6
+	//其他文件
 	return 0;
 }
 

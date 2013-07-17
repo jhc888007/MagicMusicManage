@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 
 
 
@@ -8,27 +8,28 @@ CString Instruction( void )
 	csResult.Format( _T("") );
 	///////////////////////////1234567890123456789012345678901234567890123456789012345678901234567890
 	csResult.AppendFormat( _T("**********************************************************************\r\n") );
-	csResult.AppendFormat( _T("*                                    \u6B22\u8FCE\u4F7F\u7528JHC888007\u8F6F\u4EF6\uFF01                                     *\r\n") );
+	csResult.AppendFormat( _T("*                                    欢迎使用JHC888007软件！                                     *\r\n") );
 	csResult.AppendFormat( _T("*                                                                                                             *\r\n") );
 	csResult.AppendFormat( _T("*                                             by jhc888007                                              *\r\n") );
 	csResult.AppendFormat( _T("*                                        jhc888007@163.com                                         *\r\n") );
 	csResult.AppendFormat( _T("**********************************************************************\r\n") );
 	csResult.AppendFormat( _T("\r\n") );
-	csResult.AppendFormat( _T("\u4F7F\u7528\u8BF4\u660E\uFF1A\r\n") );
-	csResult.AppendFormat( _T("\u8F93\u5165\uFF1A\u76EE\u5F55\u5FC5\u586B\uFF0C\u4E3A\u9700\u6574\u7406\u4E13\u8F91\u76EE\u5F55\u7684\u7236\u76EE\u5F55\u3002\r\n") );
-	csResult.AppendFormat( _T("\u8F93\u5165\uFF1A\u827A\u672F\u5BB6\u9009\u586B\uFF0C\u4E3A\uFF08\u9ED8\u8BA4\uFF09\u827A\u672F\u5BB6\u3002\r\n") );
-	csResult.AppendFormat( _T("\u9009\u9879\uFF1A\u9009\u4E2D\u201C\u9501\u5B9A\u201D\uFF0C\u5219\u8BA4\u4E3A\u8F93\u5165\u827A\u672F\u5BB6\u4E3A\u6240\u6709\u4E13\u8F91\u7684\u827A\u672F\u5BB6\uFF08\u5982\u679C\u8F93\u5165\u4E0D\u4E3A\u7A7A\uFF09\u3002\u4E0D\r\n") );
-	csResult.AppendFormat( _T("         \u9009\u201C\u9501\u5B9A\u201D\uFF0C\u5219\u8BA4\u4E3A\u8F93\u5165\u827A\u672F\u5BB6\u4E3A\u9ED8\u8BA4\u827A\u672F\u5BB6\uFF0C\u5F53\u7A0B\u5E8F\u4E0D\u80FD\u4ECE\u76EE\u5F55\u540D\u79F0\u83B7\u53D6\u827A\u672F\r\n") );
-	csResult.AppendFormat( _T("         \u5BB6\u65F6\u4F7F\u7528\u9ED8\u8BA4\u827A\u672F\u5BB6\u3002\r\n") );
-	csResult.AppendFormat( _T("\u9009\u9879\uFF1A\u9009\u4E2D\u201C\u7279\u6B8A\u6A21\u5F0F\u201D\uFF0C\u5219\u8BA4\u4E3A\u6B64\u76EE\u5F55\u4E0B\u6240\u6709\u6587\u4EF6\u90FD\u4E0D\u662F\u97F3\u4E50\u6587\u4EF6\uFF0C\u4EC5\u4EC5\u5C06\u6240\u6709\u6587\u4EF6\r\n") );
-	csResult.AppendFormat( _T("         \u547D\u540D\u6574\u7406\u3002\u4E0D\u9009\u201C\u7279\u6B8A\u6A21\u5F0F\u201D\uFF0C\u5219\u4E3A\u666E\u901A\u6A21\u5F0F\u3002\r\n") );
-	csResult.AppendFormat( _T("\u4E13\u8F91\u76EE\u5F55\u540D-\u827A\u672F\u5BB6\uFF1A\u5728\u4E0D\u9501\u5B9A\u827A\u672F\u5BB6\u72B6\u6001\uFF0C\u4E13\u8F91\u76EE\u5F55\u540D\u7684\u7B2C\u4E00\u4E2A\u201C-\u201D\u7B26\u53F7\u524D\u662F\u827A\u672F\u5BB6\r\n") );
-	csResult.AppendFormat( _T("         \u540D\u3002\r\n") );
-	csResult.AppendFormat( _T("\u4E13\u8F91\u76EE\u5F55\u540D-\u53D1\u884C\u5E74\u4EFD\uFF1A\u53D1\u884C\u5E74\u4EFD\u9700\u8981\u4F7F\u7528\u201C()\u201D\u201C[]\u201D\u201C{}\u201D\u62EC\u8D77\u3002\r\n") );
-	csResult.AppendFormat( _T("\u4E13\u8F91\u76EE\u5F55\u540D-\u97F3\u4E50\u683C\u5F0F\uFF1A\u5982\u679C\u4E13\u8F91\u76EE\u5F55\u540D\u4E2D\u5305\u542B\u683C\u5F0F\u4FE1\u606F\uFF0C\u5219\u4F7F\u7528\u8BE5\u683C\u5F0F\uFF0C\u5426\u5219\u5219\u4EE5\r\n") );
-	csResult.AppendFormat( _T("         \u4E13\u8F91\u5185\u4EFB\u610F\u97F3\u4E50\u6587\u4EF6\u683C\u5F0F\u4E3A\u4E13\u8F91\u683C\u5F0F\u3002\r\n") );
-	csResult.AppendFormat( _T("\u4E13\u8F91\u76EE\u5F55\u540D-\u5531\u7247\u7C7B\u578B\uFF1A\u652F\u6301\u201C\u4E13\u8F91\u201D\u201C\u5408\u8F91\u201D\u201CEP\u201D\u4E09\u79CD\u683C\u5F0F\uFF0C\u9ED8\u8BA4\u4E3A\u201C\u4E13\u8F91\u201D\uFF0C\u53E6\u4E24\u79CD\u9700\u8981\r\n") );
-	csResult.AppendFormat( _T("         \u5728\u76EE\u5F55\u540D\u4EFB\u610F\u4F4D\u7F6E\u6CE8\u660E\uFF08\u524D\u540E\u4E0D\u4E0E\u5176\u4ED6\u5B57\u6BCD\u6570\u5B57\u76F8\u8FDE\uFF09\u3002\r\n") );
+	csResult.AppendFormat( _T("使用说明：\r\n") );
+	csResult.AppendFormat( _T("输入：目录必填，为需整理专辑目录的父目录。\r\n") );
+	csResult.AppendFormat( _T("输入：艺术家选填，为（默认）艺术家。\r\n") );
+	csResult.AppendFormat( _T("输入：需删除选填，文件（夹）名中需要删除的单词。\r\n") );
+	csResult.AppendFormat( _T("选项：选中“锁定”，则认为输入艺术家为所有专辑的艺术家（如果输入不为空）。不\r\n") );
+	csResult.AppendFormat( _T("         选“锁定”，则认为输入艺术家为默认艺术家，当程序不能从目录名称获取艺术\r\n") );
+	csResult.AppendFormat( _T("         家时使用默认艺术家。\r\n") );
+	csResult.AppendFormat( _T("选项：选中“特殊模式”，则认为此目录下所有文件都不是音乐文件，仅仅将所有文件\r\n") );
+	csResult.AppendFormat( _T("         命名整理。不选“特殊模式”，则为普通模式。\r\n") );
+	csResult.AppendFormat( _T("专辑目录名-艺术家：在不锁定艺术家状态，专辑目录名的第一个“-”符号前是艺术家\r\n") );
+	csResult.AppendFormat( _T("         名。\r\n") );
+	csResult.AppendFormat( _T("专辑目录名-发行年份：发行年份需要使用“()”“[]”“{}”括起。\r\n") );
+	csResult.AppendFormat( _T("专辑目录名-音乐格式：如果专辑目录名中包含格式信息，则使用该格式，否则则以\r\n") );
+	csResult.AppendFormat( _T("         专辑内任意音乐文件格式为专辑格式。\r\n") );
+	csResult.AppendFormat( _T("专辑目录名-唱片类型：支持“专辑”“合辑”“EP”三种格式，默认为“专辑”，另两种需要\r\n") );
+	csResult.AppendFormat( _T("         在目录名任意位置注明（前后不与其他字母数字相连）。\r\n") );
 	csResult.AppendFormat( _T("\r\n") );
 	csResult.AppendFormat( _T("**********************************************************************") );
 	return csResult;

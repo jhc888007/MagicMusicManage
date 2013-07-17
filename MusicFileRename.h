@@ -1,4 +1,4 @@
-#ifndef __MUSIC_FILE_RENAME_H__
+﻿#ifndef __MUSIC_FILE_RENAME_H__
 #define __MUSIC_FILE_RENAME_H__
 
 

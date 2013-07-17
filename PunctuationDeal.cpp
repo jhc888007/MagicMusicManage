@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "Punctuation.h"
 
 
@@ -47,30 +47,30 @@ CString PunctuationComplicate( CString csPunctuation )
 	for( nCount = 0; nCount < nLen + 1; nCount++ )
 	{
 		nResult = PunctuationCheckType( *( ptOrigin + nCount ) );
-		//\u7A7A\u683C\u3001\u70B9\u6216\u4E0B\u5212\u7EBF\u7B49\u8FDE\u63A5\u7EBF
+		//空格、点或下划线等连接线
 		if( nResult < 100 )
 			continue;
-		//\u4E0E\u524D\u9762\u5B57\u6BCD\u76F8\u63A5\uFF0C\u4E0D\u4E0E\u540E\u9762\u5B57\u6BCD\u76F8\u63A5\u7684\u7B26\u53F7
+		//与前面字母相接，不与后面字母相接的符号
 		else if( nResult < 200 )
 		{
-			//\u5982\u679C\u524D\u9762\u7B26\u53F7\u662F\u524D\u540E\u4E0D\u76F8\u63A5\u7B26\u53F7
+			//如果前面符号是前后不相接符号
 			if( nLastResult > 300 && nLastResult < 400 )
 				csResult.AppendFormat(_T(".%c"), *(ptOrigin+nCount) );
 			else
 				csResult.AppendFormat(_T("%c"), *(ptOrigin+nCount) );
 			nLastResult = nResult;
 		}
-		//\u4E0E\u540E\u9762\u5B57\u6BCD\u76F8\u63A5\uFF0C\u4E0D\u4E0E\u524D\u9762\u5B57\u6BCD\u76F8\u63A5\u7684\u7B26\u53F7
+		//与后面字母相接，不与前面字母相接的符号
 		else if( nResult < 300 )
 		{
-			//\u5982\u679C\u524D\u9762\u5B57\u6BCD\u4E5F\u662F\u76F8\u540C\u7C7B\u578B\u7684\u7B26\u53F7
+			//如果前面字母也是相同类型的符号
 			if( nLastResult > 200 && nLastResult < 300 )
 				csResult.AppendFormat(_T("%c"), *(ptOrigin+nCount) );
 			else
 				csResult.AppendFormat(_T(".%c"), *(ptOrigin+nCount) );
 			nLastResult = nResult;
 		}
-		//\u4E0E\u524D\u540E\u5B57\u6BCD\u90FD\u4E0D\u76F8\u63A5\u7684\u7B26\u53F7
+		//与前后字母都不相接的符号
 		else if( nResult < 400 )
 		{
 			csResult.AppendFormat(_T(".%c"), *(ptOrigin+nCount) );
@@ -97,7 +97,7 @@ CString PunctuationWordGetNext( TCHAR *ptChar, int *pNum, int *pFlag )
 	csResult.Format( _T("") );
 	nResult = PunctuationCheckType( *ptChar );
 	
-	//\u7B26\u53F7
+	//符号
 	if( nResult > 0 )
 	{
 		*pFlag = 1;
@@ -109,7 +109,7 @@ CString PunctuationWordGetNext( TCHAR *ptChar, int *pNum, int *pFlag )
 			nResult = PunctuationCheckType( *ptChar );
 		}
 	}
-	//\u5355\u8BCD
+	//单词
 	else
 	{
 		*pFlag = 2;
@@ -121,10 +121,10 @@ CString PunctuationWordGetNext( TCHAR *ptChar, int *pNum, int *pFlag )
 			nResult = PunctuationCheckType( *ptChar );
 		}
 	}
-	//\u672B\u5C3E\u7B26\u53F7
+	//末尾符号
 	if( nResult > 500 && *pFlag == 1 )
 		*pFlag = -1;
-	//\u672B\u5C3E\u5355\u8BCD
+	//末尾单词
 	if( nResult > 500 && *pFlag == 2 )
 		*pFlag = -2;
 	

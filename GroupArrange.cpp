@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "WordCheck.h"
 
 
@@ -41,16 +41,16 @@ int GroupArrangeDelete( CString csDir )
 	{
 		nFlag = 1;
 
-		//\u67E5\u627E\u6587\u4EF6\u5939\u4E2D\u7684\u6587\u4EF6
+		//查找文件夹中的文件
 		csTemp.Format( _T("%s\\*"), csDir );
 		b = pcFile->FindFile( csTemp );
 		b = pcFile->FindNextFile();
 		b = pcFile->FindNextFile();
-		//\u5982\u679C\u6587\u4EF6\u5939\u4E3A\u7A7A\uFF0C\u8FD4\u56DE0
+		//如果文件夹为空，返回0
 		if( b == NULL )
 			return 0;
 
-		//\u5220\u9664\u7A7A\u6587\u4EF6\u5939
+		//删除空文件夹
 		while( b != NULL )
 		{
 			b = pcFile->FindNextFile();

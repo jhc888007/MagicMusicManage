@@ -1,28 +1,29 @@
-// MyMusicDlg.h : \u5934\u6587\u4EF6
+﻿
+// MyMusicDlg.h : 头文件
 //
 
 #pragma once
 
 
-// CMyMusicDlg \u5BF9\u8BDD\u6846
+// CMyMusicDlg 对话框
 class CMyMusicDlg : public CDialogEx
 {
-// \u6784\u9020
+// 构造
 public:
-	CMyMusicDlg(CWnd* pParent = NULL);	// \u6807\u51C6\u6784\u9020\u51FD\u6570
+	CMyMusicDlg(CWnd* pParent = NULL);	// 标准构造函数
 
-// \u5BF9\u8BDD\u6846\u6570\u636E
+// 对话框数据
 	enum { IDD = IDD_MYMUSIC_DIALOG };
 
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV \u652F\u6301
+	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV 支持
 
 
-// \u5B9E\u73B0
+// 实现
 protected:
 	HICON m_hIcon;
 
-	// \u751F\u6210\u7684\u6D88\u606F\u6620\u5C04\u51FD\u6570
+	// 生成的消息映射函数
 	virtual BOOL OnInitDialog();
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
@@ -34,6 +35,7 @@ public:
 //	CString m_Artist;
 	CString m_artist;
 //	CEdit m_type;
-	CString m_type;
+//	CString m_type;
 	CString m_instruction;
+	CString m_delete;
 };

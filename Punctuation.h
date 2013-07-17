@@ -1,4 +1,4 @@
-#ifndef __PUNCTUATION_H__
+﻿#ifndef __PUNCTUATION_H__
 #define __PUNCTUATION_H__
 
 

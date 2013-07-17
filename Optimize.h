@@ -1,4 +1,4 @@
-#ifndef _OPTIMIZE_H_
+﻿#ifndef _OPTIMIZE_H_
 #define _OPTIMIZE_H_
 
 

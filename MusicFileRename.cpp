@@ -1,7 +1,8 @@
-\uFEFF#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "Word.h"
 #include "WordCheck.h"
 #include "PunctuationDeal.h"
+#include "CutRename.h"
 
 
 
@@ -22,16 +23,16 @@ CString MusicFileSimplify( CString csName )
 
 	while( csWord.Compare( _T("") ) != 0 )
 	{
-		//\u5904\u7406\u5355\u8BCD
+		//处理单词
 		if( nFlag == 2 || nFlag == -2 )
 			csResult.AppendFormat( csWord );
-		//\u5904\u7406\u7B26\u53F7
+		//处理符号
 		else if( nFlag == 1 )
 		{
 			csWord = PunctuationSimplify( csWord );
 			csResult.AppendFormat( csWord );
 		}
-		//\u5904\u7406\u672B\u5C3E\u7B26\u53F7
+		//处理末尾符号
 		else
 			break;
 		csWord = PunctuationWordGetNext( ptOrigin + nCount, &nNum, &nFlag );
@@ -69,7 +70,7 @@ CString MusicFileComplicate( CString csName )
 
 	while( csWord.Compare( _T("") ) != 0 )
 	{
-		//\u5904\u7406\u975E\u540E\u7F00\u5355\u8BCD
+		//处理非后缀单词
 		if( nFlag == 2 )
 		{
 			if( WordCheckSpecial( csWord ) == 1 )
@@ -78,19 +79,19 @@ CString MusicFileComplicate( CString csName )
 				csWord = WordFirstCap( csWord );
 			csResult.AppendFormat( csWord );
 		}
-		//\u5904\u7406\u7B26\u53F7
+		//处理符号
 		else if( nFlag == 1 )
 		{
 			csWord = PunctuationComplicate( csWord );
 			csResult.AppendFormat( csWord );
 		}
-		//\u5904\u7406\u540E\u7F00
+		//处理后缀
 		else if( nFlag == -2 )
 		{
 			csWord = WordLower( csWord );
 			csResult.AppendFormat( csWord );
 		}
-		//\u5904\u7406\u672B\u5C3E\u7B26\u53F7
+		//处理末尾符号
 		else
 			break;
 		csWord = PunctuationWordGetNext( ptOrigin + nCount, &nNum, &nFlag );
@@ -106,7 +107,8 @@ CString MusicFileRename( CString csName )
 {
 	CString csResult;
 	
-	csResult = MusicFileSimplify( csName );
+	csResult = CutRename( csName );
+	csResult = MusicFileSimplify( csResult );
 	csResult = MusicFileBeautify( csResult );
 	csResult = MusicFileComplicate( csResult );
 

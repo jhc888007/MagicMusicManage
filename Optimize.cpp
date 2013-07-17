@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include <locale.>
 #include "File.h"
 #include "WordCheck.h"
@@ -218,7 +218,7 @@ void Optimize3( CString csDir, CString csSubDirName, CString csTitle, int nMusic
 			{
 				csOldName.Format( _T("%s\\%s"), csDir, csName );
 				csSequence = WordCheckSequence( csName );
-				//Èç¹ûĞèÒªÌí¼ÓĞòºÅ
+				//å¦‚æœéœ€è¦æ·»åŠ åºå·
 				if( csSequence.Compare( _T("") ) != 0 && nMusicFileCount > SINGLE_MUSIC_FILE_MAX )
 				{
 					csTemp = PunctuationDeleteSequence( csName );
@@ -232,7 +232,7 @@ void Optimize3( CString csDir, CString csSubDirName, CString csTitle, int nMusic
 					else
 						csName.Format( _T("%s.-.%s"), csSequence, csTemp );
 				}
-				//Èç¹ûĞèÒªÉ¾³ıĞòºÅ
+				//å¦‚æœéœ€è¦åˆ é™¤åºå·
 				else if( csSequence.Compare( _T("") ) != 0 && nMusicFileCount <= NO_SEQUENCE_FILE_MAX )
 				{
 					csTemp = PunctuationDeleteSequence( csName );
@@ -246,7 +246,7 @@ void Optimize3( CString csDir, CString csSubDirName, CString csTitle, int nMusic
 					else
 						csName.Format( _T("%s"), csTemp );
 				}
-				//Èç¹û²»ĞèÒª¸Ä±ä
+				//å¦‚æœä¸éœ€è¦æ”¹å˜
 				else
 				{
 					csNewName.Format( _T("%s"), csName );

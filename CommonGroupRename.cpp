@@ -1,7 +1,8 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "File.h"
 #include "MusicGroupRename.h"
 #include "PunctuationDeal.h"
+#include "CutRename.h"
 
 
 
@@ -31,7 +32,8 @@ CString CommonGroupRename( CString csName )
 {
 	CString csResult;
 	
-	csResult = CommonGroupSimplify( csName );
+	csResult = CutRename( csName );
+	csResult = CommonGroupSimplify( csResult );
 	csResult = CommonGroupBeautify( csResult );
 	csResult = CommonGroupComplicate( csResult );
 

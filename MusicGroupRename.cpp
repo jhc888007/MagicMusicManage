@@ -1,7 +1,8 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "Word.h"
 #include "WordCheck.h"
 #include "PunctuationDeal.h"
+#include "CutRename.h"
 
 
 
@@ -22,19 +23,22 @@ CString MusicGroupSimplify( CString csName )
 
 	while( csWord.Compare( _T("") ) != 0 )
 	{
-		//\u5904\u7406\u5355\u8BCD
+		//处理单词
 		if( nFlag == 2 || nFlag == -2 )
 		{
-			csWord = WordFirstCap( csWord );
+			if( WordCheckSpecial( csWord ) == 1 )
+				csWord = WordCap( csWord );
+			else
+				csWord = WordFirstCap( csWord );
 			csResult.AppendFormat( csWord );
 		}
-		//\u5904\u7406\u7B26\u53F7
+		//处理符号
 		else if( nFlag == 1 )
 		{
 			csWord = PunctuationSimplify( csWord );
 			csResult.AppendFormat( csWord );
 		}
-		//\u5904\u7406\u672B\u5C3E\u7B26\u53F7
+		//处理末尾符号
 		else
 		{
 			csWord = PunctuationSimplify( csWord );
@@ -64,7 +68,7 @@ CString MusicGroupBeautify( CString csName, CString csArtist, int nArtistLock, C
 	lstrcpy( ptOrigin, csName.GetBuffer(nLen) );
 	csResult.Format( _T("") );
 	
-	//\u5982\u679C\u672A\u6307\u5B9A\u827A\u672F\u5BB6
+	//如果未指定艺术家
 	if( csArtist.Compare( _T("") ) == 0 || nArtistLock == 0 )
 	{
 		nCount = PunctuationGetDashPosition( ptOrigin );
@@ -76,41 +80,41 @@ CString MusicGroupBeautify( CString csName, CString csArtist, int nArtistLock, C
 		}
 	}
 
-	//\u8BFB\u53D6\u540E\u9762\u5355\u8BCD
+	//读取后面单词
 	csWord = PunctuationWordGetNext( ptOrigin, &nNum, &nFlag );
 	nCount = 0;
 	csResult.Format( _T("") );
 
 	while( csWord.Compare( _T("") ) != 0 )
 	{
-		//\u5904\u7406\u5355\u8BCD
+		//处理单词
 		if( nFlag == 2 || nFlag == -2 )
 		{
-			//\u5982\u679C\u662F\u5E74\u4EE3
+			//如果是年代
 			if( nCount > 0 && WordCheckYear( ptOrigin + nCount - 1 ) == 1 )
 			{
 				csYear = csWord;
 			}
-			//\u5982\u679C\u662F\u5531\u7247\u7C7B\u578B
+			//如果是唱片类型
 			else if( WordCheckType( csWord ) == 1 )
 			{
 				csType = csWord;
 			}
-			//\u5982\u679C\u662F\u6B4C\u66F2\u683C\u5F0F
+			//如果是歌曲格式
 			else if( WordCheckMusic( csWord ) == 1 )
 			{
 				csSuffix = WordCap( csWord );
 			}
-			//\u5176\u4ED6
+			//其他
 			else
 			{
 				csResult.AppendFormat( csWord );
 			}
 		}
-		//\u5904\u7406\u7B26\u53F7
+		//处理符号
 		else if( nFlag == 1 )
 			csResult.AppendFormat( csWord );
-		//\u5904\u7406\u672B\u5C3E\u7B26\u53F7
+		//处理末尾符号
 		else
 		{
 			csResult.AppendFormat( csWord );
@@ -120,12 +124,12 @@ CString MusicGroupBeautify( CString csName, CString csArtist, int nArtistLock, C
 		csWord = PunctuationWordGetNext( ptOrigin + nCount, &nNum, &nFlag );
 	}
 
-	//\u5904\u7406\u62EC\u53F7
+	//处理括号
 	csResult = PunctuationDeleteBlankBracket( csResult );
 	csResult = PunctuationDeleteHead( csResult );
 	csWord = PunctuationDeleteSingleBracket( csResult );
 
-	//\u6574\u4F53\u7ED3\u6784
+	//整体结构
 	csResult.Format( _T("") );
 	if( csArtist.Compare( _T("") ) != 0 )
 		csResult.AppendFormat( _T("%s-"), csArtist );
@@ -137,7 +141,7 @@ CString MusicGroupBeautify( CString csName, CString csArtist, int nArtistLock, C
 	if( csType.Compare( _T("") ) != 0 )
 		csResult.AppendFormat( _T("%s"), csType );
 	else
-		csResult.AppendFormat( _T("\u4E13\u8F91"));
+		csResult.AppendFormat( _T("专辑"));
 	csResult.AppendFormat( _T("(%s)"), csSuffix );
 
 	csName.ReleaseBuffer();
@@ -162,16 +166,16 @@ CString MusicGroupComplicate( CString csName )
 
 	while( csWord.Compare( _T("") ) != 0 )
 	{
-		//\u5904\u7406\u5355\u8BCD
+		//处理单词
 		if( nFlag == 2 || nFlag == -2 )
 			csResult.AppendFormat( csWord );
-		//\u5904\u7406\u7B26\u53F7
+		//处理符号
 		else if( nFlag == 1 )
 		{
 			csWord = PunctuationComplicate( csWord );
 			csResult.AppendFormat( csWord );
 		}
-		//\u5904\u7406\u672B\u5C3E\u7B26\u53F7
+		//处理末尾符号
 		else
 		{
 			csWord = PunctuationComplicate( csWord );
@@ -194,7 +198,8 @@ CString MusicGroupRename( CString csName, CString csArtist, int nArtistLock, CSt
 {
 	CString csResult;
 	
-	csResult = MusicGroupSimplify( csName );
+	csResult = CutRename( csName );
+	csResult = MusicGroupSimplify( csResult );
 	csResult = MusicGroupBeautify( csResult, csArtist, nArtistLock, csType, csSuffix );
 	csResult = MusicGroupComplicate( csResult );
 

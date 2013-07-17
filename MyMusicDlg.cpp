@@ -1,4 +1,5 @@
-// MyMusicDlg.cpp : \u5B9E\u73B0\u6587\u4EF6
+﻿
+// MyMusicDlg.cpp : 实现文件
 //
 
 #include "stdafx.h"
@@ -25,20 +26,20 @@
 #endif
 
 
-// \u7528\u4E8E\u5E94\u7528\u7A0B\u5E8F\u201C\u5173\u4E8E\u201D\u83DC\u5355\u9879\u7684 CAboutDlg \u5BF9\u8BDD\u6846
+// 用于应用程序“关于”菜单项的 CAboutDlg 对话框
 
 class CAboutDlg : public CDialogEx
 {
 public:
 	CAboutDlg();
 
-// \u5BF9\u8BDD\u6846\u6570\u636E
+// 对话框数据
 	enum { IDD = IDD_ABOUTBOX };
 
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV \u652F\u6301
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
-// \u5B9E\u73B0
+// 实现
 protected:
 	DECLARE_MESSAGE_MAP()
 };
@@ -56,7 +57,7 @@ BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// CMyMusicDlg \u5BF9\u8BDD\u6846
+// CMyMusicDlg 对话框
 
 
 
@@ -68,8 +69,9 @@ CMyMusicDlg::CMyMusicDlg(CWnd* pParent /*=NULL*/)
 	m_group_name = _T("");
 	//  m_Artist = _T("");
 	m_artist = _T("");
-	m_type = _T("");
+	//  m_type = _T("");
 	m_instruction = _T("");
+	m_delete = _T("");
 }
 
 void CMyMusicDlg::DoDataExchange(CDataExchange* pDX)
@@ -79,8 +81,9 @@ void CMyMusicDlg::DoDataExchange(CDataExchange* pDX)
 	//  DDX_Text(pDX, IDC_EDIT2, m_Artist);
 	DDX_Text(pDX, IDC_EDIT2, m_artist);
 	//  DDX_Control(pDX, IDC_EDIT3, m_type);
-	DDX_Text(pDX, IDC_EDIT3, m_type);
+	//  DDX_Text(pDX, IDC_EDIT3, m_type);
 	DDX_Text(pDX, IDC_EDIT4, m_instruction);
+	DDX_Text(pDX, IDC_EDIT3, m_delete);
 }
 
 BEGIN_MESSAGE_MAP(CMyMusicDlg, CDialogEx)
@@ -91,15 +94,15 @@ BEGIN_MESSAGE_MAP(CMyMusicDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// CMyMusicDlg \u6D88\u606F\u5904\u7406\u7A0B\u5E8F
+// CMyMusicDlg 消息处理程序
 
 BOOL CMyMusicDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
-	// \u5C06\u201C\u5173\u4E8E...\u201D\u83DC\u5355\u9879\u6DFB\u52A0\u5230\u7CFB\u7EDF\u83DC\u5355\u4E2D\u3002
+	// 将“关于...”菜单项添加到系统菜单中。
 
-	// IDM_ABOUTBOX \u5FC5\u987B\u5728\u7CFB\u7EDF\u547D\u4EE4\u8303\u56F4\u5185\u3002
+	// IDM_ABOUTBOX 必须在系统命令范围内。
 	ASSERT((IDM_ABOUTBOX & 0xFFF0) == IDM_ABOUTBOX);
 	ASSERT(IDM_ABOUTBOX < 0xF000);
 
@@ -117,16 +120,16 @@ BOOL CMyMusicDlg::OnInitDialog()
 		}
 	}
 
-	// \u8BBE\u7F6E\u6B64\u5BF9\u8BDD\u6846\u7684\u56FE\u6807\u3002\u5F53\u5E94\u7528\u7A0B\u5E8F\u4E3B\u7A97\u53E3\u4E0D\u662F\u5BF9\u8BDD\u6846\u65F6\uFF0C\u6846\u67B6\u5C06\u81EA\u52A8
-	//  \u6267\u884C\u6B64\u64CD\u4F5C
-	SetIcon(m_hIcon, TRUE);			// \u8BBE\u7F6E\u5927\u56FE\u6807
-	SetIcon(m_hIcon, FALSE);		// \u8BBE\u7F6E\u5C0F\u56FE\u6807
+	// 设置此对话框的图标。当应用程序主窗口不是对话框时，框架将自动
+	//  执行此操作
+	SetIcon(m_hIcon, TRUE);			// 设置大图标
+	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
-	// TODO: \u5728\u6B64\u6DFB\u52A0\u989D\u5916\u7684\u521D\u59CB\u5316\u4EE3\u7801
+	// TODO: 在此添加额外的初始化代码
 	m_instruction = Instruction();
 	UpdateData(FALSE);
 
-	return TRUE;  // \u9664\u975E\u5C06\u7126\u70B9\u8BBE\u7F6E\u5230\u63A7\u4EF6\uFF0C\u5426\u5219\u8FD4\u56DE TRUE
+	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
 void CMyMusicDlg::OnSysCommand(UINT nID, LPARAM lParam)
@@ -142,19 +145,19 @@ void CMyMusicDlg::OnSysCommand(UINT nID, LPARAM lParam)
 	}
 }
 
-// \u5982\u679C\u5411\u5BF9\u8BDD\u6846\u6DFB\u52A0\u6700\u5C0F\u5316\u6309\u94AE\uFF0C\u5219\u9700\u8981\u4E0B\u9762\u7684\u4EE3\u7801
-//  \u6765\u7ED8\u5236\u8BE5\u56FE\u6807\u3002\u5BF9\u4E8E\u4F7F\u7528\u6587\u6863/\u89C6\u56FE\u6A21\u578B\u7684 MFC \u5E94\u7528\u7A0B\u5E8F\uFF0C
-//  \u8FD9\u5C06\u7531\u6846\u67B6\u81EA\u52A8\u5B8C\u6210\u3002
+// 如果向对话框添加最小化按钮，则需要下面的代码
+//  来绘制该图标。对于使用文档/视图模型的 MFC 应用程序，
+//  这将由框架自动完成。
 
 void CMyMusicDlg::OnPaint()
 {
 	if (IsIconic())
 	{
-		CPaintDC dc(this); // \u7528\u4E8E\u7ED8\u5236\u7684\u8BBE\u5907\u4E0A\u4E0B\u6587
+		CPaintDC dc(this); // 用于绘制的设备上下文
 
 		SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
 
-		// \u4F7F\u56FE\u6807\u5728\u5DE5\u4F5C\u533A\u77E9\u5F62\u4E2D\u5C45\u4E2D
+		// 使图标在工作区矩形中居中
 		int cxIcon = GetSystemMetrics(SM_CXICON);
 		int cyIcon = GetSystemMetrics(SM_CYICON);
 		CRect rect;
@@ -162,7 +165,7 @@ void CMyMusicDlg::OnPaint()
 		int x = (rect.Width() - cxIcon + 1) / 2;
 		int y = (rect.Height() - cyIcon + 1) / 2;
 
-		// \u7ED8\u5236\u56FE\u6807
+		// 绘制图标
 		dc.DrawIcon(x, y, m_hIcon);
 	}
 	else
@@ -171,12 +174,18 @@ void CMyMusicDlg::OnPaint()
 	}
 }
 
-//\u5F53\u7528\u6237\u62D6\u52A8\u6700\u5C0F\u5316\u7A97\u53E3\u65F6\u7CFB\u7EDF\u8C03\u7528\u6B64\u51FD\u6570\u53D6\u5F97\u5149\u6807
-//\u663E\u793A\u3002
+//当用户拖动最小化窗口时系统调用此函数取得光标
+//显示。
 HCURSOR CMyMusicDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
 }
+
+
+
+CString g_delete;
+
+
 
 void CMyMusicDlg::OnBnClickedOk()
 {
@@ -187,9 +196,9 @@ void CMyMusicDlg::OnBnClickedOk()
 	CString csTemp;
 	csName1.Format(_T(".00_._Britney_ Spears-Femme_Fatale(Deluxe_Edition)[..].mp3"));
 	csName2.Format(_T(".Hans Zimmer & Lorne Balfe -.. The Bible-OST www.tori.com(2013)..."));
-	csName2.Format(_T("Backstreet.Boys.-.[Black.&.Blue(2000)].\u4E13\u8F91.(WAV)"));
+	csName2.Format(_T("Backstreet.Boys.-.[Black.&.Blue(2000)].专辑.(WAV)"));
 	csName2.Format(_T("Backstreet.Boys.-.[Black.&.Blue EP .. (2000).(WAV)"));
-	csName2.Format(_T("Angelight.-.[\u0421\u0435\u0430\u043D\u0441\u044B.\u0438\u0441\u0446\u0435\u043B\u044F\u044E\u0449\u0435\u0439_\u043C\u0443\u0437\u044B\u043A\u0438.(1-\u044B\u0439.\u0441\u0435\u0430\u043D\u0441)].\u4E13\u8F91.[FLAC"));
+	csName2.Format(_T("Angelight.-.[Сеансы.исцеляющей_музыки.(1-ый.сеанс)].专辑.[FLAC"));
 	csResult = MusicGroupRename( csName2, _T(""), _T(""), _T("") );
 	csResult = MusicFileRename( csName1 );*/
 	//FileCheckAndRename(_T("C:\\Users\\jhc888007\\Desktop\\2"));
@@ -205,7 +214,7 @@ void CMyMusicDlg::OnBnClickedOk()
 	//CString csName2;
 	//CString csResult;
 	//csName.Format(_T(".00_._Britney_ Spears-Femme_Fatale(Deluxe_Edition)[..].mp3"));
-	//csName.Format(_T("Above.&.Beyond.-.[Tri.State.2008.Remix.Edition.(Limited.Edition)].\u4E13\u8F91.(MP3)"));
+	//csName.Format(_T("Above.&.Beyond.-.[Tri.State.2008.Remix.Edition.(Limited.Edition)].专辑.(MP3)"));
 	//csResult = WordCheckTitle( csName );
 	//csResult = FileArrangeGetSuffix( csName );
 	//csName1.Format( _T("C:\\Users\\jhc888007\\Desktop\\C++\\Test\\01 Cu_Chullain.mp3") );
@@ -229,7 +238,7 @@ void CMyMusicDlg::OnBnClickedOk()
 	//MessageBox((LPCTSTR)csTemp,0,0 );
 
 	//CString csName;
-	//csName.Format(_T("C:\\Users\\jhc888007\\Desktop\\C++\\My_Music\\My_Music_Compete\\John_Williams_Complete\\John.Williams.-.[Indiana.Jones.The.Soundtracks.Collection.(2008)].\u4E13\u8F91.(FLAC)\\CD4.-.Indiana.Jones.And.The.Kingdom.Of.The.Crystal.Skull\\dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd.txtx"));
+	//csName.Format(_T("C:\\Users\\jhc888007\\Desktop\\C++\\My_Music\\My_Music_Compete\\John_Williams_Complete\\John.Williams.-.[Indiana.Jones.The.Soundtracks.Collection.(2008)].专辑.(FLAC)\\CD4.-.Indiana.Jones.And.The.Kingdom.Of.The.Crystal.Skull\\dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd.txtx"));
 	//csName = WordCheckLen( csName, 4 );
 
 	/*CStdioFile fSongList;
@@ -298,12 +307,13 @@ void CMyMusicDlg::OnBnClickedOk()
 	UpdateData(TRUE);
 	if( m_group_name.Compare( _T("") ) != 0 )
 	{
+		g_delete.Format( m_delete );
 		if( BST_UNCHECKED == ( (CButton *)GetDlgItem( IDC_SPECIAL_CHECK ) )->GetCheck() )
 		{
 			if( BST_CHECKED == ( (CButton *)GetDlgItem( IDC_CHECK_BOX ) )->GetCheck() )
-				RenameAfterCheck( m_group_name, m_artist, 1, m_type );
+				RenameAfterCheck( m_group_name, m_artist, 1, _T("") );
 			else
-				RenameAfterCheck( m_group_name, m_artist, 0, m_type );
+				RenameAfterCheck( m_group_name, m_artist, 0, _T(""));
 		}
 		else
 		{

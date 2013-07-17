@@ -1,4 +1,4 @@
-#ifndef _COMMON_GROUP_RENAME_H_
+﻿#ifndef _COMMON_GROUP_RENAME_H_
 #define _COMMON_GROUP_RENAME_H_
 
 

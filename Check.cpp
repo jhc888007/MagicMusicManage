@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "File.h"
 #include "WordCheck.h"
 #include "Arrange.h"
@@ -6,6 +6,10 @@
 #include "CommonGroupRename.h"
 #include "MusicFileRename.h"
 #include "FileArrange.h"
+
+
+
+extern CString g_delete;
 
 
 
@@ -26,7 +30,7 @@ int CheckGroupTypeAndArrange( CString csDir )
 	csTemp.Format( _T("%s\\*"), csDir );
 	BOOL b = pcFile->FindFile( csTemp );
 
-	//\u68C0\u67E5\u97F3\u4E50\u6587\u4EF6\u5939\u7C7B\u578B
+	//检查音乐文件夹类型
 	nMusicDirectoryCount = 0;
 	nAllMusicFileCount = 0;
 	nMusicFileCount = 0;
@@ -62,19 +66,19 @@ int CheckGroupTypeAndArrange( CString csDir )
 		}
 	}
 
-	//\u5982\u679C\u4E0D\u5305\u542B\u97F3\u4E50\u6587\u4EF6\u548C\u97F3\u4E50\u6587\u4EF6\u5939
+	//如果不包含音乐文件和音乐文件夹
 	if( nMusicDirectoryCount == 0 && nMusicFileCount == 0 )
 		return 0;
-	//\u5982\u679C\u53EA\u5305\u542B\u97F3\u4E50\u6587\u4EF6\uFF0C\u4E0D\u5305\u542B\u97F3\u4E50\u6587\u4EF6\u5939
+	//如果只包含音乐文件，不包含音乐文件夹
 	else if( nMusicDirectoryCount == 0 )
 		ArrangeMusicGroup( csDir, nCoverFileCount, nAllMusicFileCount );
-	//\u5982\u679C\u53EA\u5305\u542B\u4E00\u4E2A\u97F3\u4E50\u6587\u4EF6\u5939
+	//如果只包含一个音乐文件夹
 	else if( nMusicDirectoryCount == 1 )
 		ArrangeMusicGroup( csDir, nCoverFileCount, nAllMusicFileCount );
-	//\u5982\u679C\u5305\u542B\u4E00\u4E2A\u4EE5\u4E0A\u97F3\u4E50\u6587\u4EF6\u5939\uFF0C\u53C8\u5305\u542B\u97F3\u4E50\u6587\u4EF6
+	//如果包含一个以上音乐文件夹，又包含音乐文件
 	else if( nMusicDirectoryCount > 1 && nMusicFileCount > 0 )
 		RenameInGroup( csDir );
-	//\u5982\u679C\u5305\u542B\u4E00\u4E2A\u4EE5\u4E0A\u97F3\u4E50\u6587\u4EF6\u5939\uFF0C\u4E0D\u5305\u542B\u97F3\u4E50\u6587\u4EF6
+	//如果包含一个以上音乐文件夹，不包含音乐文件
 	else
 	{
 		csTemp.Format( _T("%s\\*"), csDir );
